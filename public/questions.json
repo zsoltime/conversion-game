@@ -1,0 +1,399 @@
+{
+  "length": {
+    "0": {
+      "from": "m",
+      "to": "cm",
+      "min": 2,
+      "max": 99,
+      "step": 1,
+      "multiplyBy": 100
+    },
+    "1": {
+      "from": "cm",
+      "to": "m",
+      "min": 100,
+      "max": 9900,
+      "step": 100,
+      "multiplyBy": 0.01
+    },
+    "2": {
+      "from": "cm",
+      "to": "mm",
+      "min": 2,
+      "max": 99,
+      "step": 1,
+      "multiplyBy": 10
+    },
+    "3": {
+      "from": "mm",
+      "to": "cm",
+      "min": 100,
+      "max": 9900,
+      "step": 100,
+      "multiplyBy": 0.1
+    },
+    "4": {
+      "from": "km",
+      "to": "m",
+      "min": 2,
+      "max": 99,
+      "step": 1,
+      "multiplyBy": 1000
+    },
+    "5": {
+      "from": "m",
+      "to": "km",
+      "min": 2000,
+      "max": 99000,
+      "step": 1000,
+      "multiplyBy": 0.001
+    },
+    "6": {
+      "from": "m",
+      "to": "km",
+      "min": 1100,
+      "max": 99900,
+      "step": 100,
+      "multiplyBy": 0.001
+    },
+    "7": {
+      "from": "cm",
+      "to": "mm",
+      "min": 2,
+      "max": 99,
+      "step": 0.1,
+      "multiplyBy": 10
+    },
+    "8": {
+      "from": "cm",
+      "to": "mm",
+      "min": 2,
+      "max": 99,
+      "step": 0.05,
+      "multiplyBy": 10
+    },
+    "9": {
+      "from": "mm",
+      "to": "m",
+      "min": 1010,
+      "max": 99990,
+      "step": 10,
+      "multiplyBy": 0.001
+    },
+    "10": {
+      "from": "m",
+      "to": "mm",
+      "min": 1.1,
+      "max": 9.9,
+      "step": 0.1,
+      "multiplyBy": 1000
+    },
+    "11": {
+      "from": "km",
+      "to": "mm",
+      "min": 1.01,
+      "max": 9.99,
+      "step": 0.01,
+      "multiplyBy": 1000000
+    }
+  },
+  "mass": {
+    "12": {
+      "from": "kg",
+      "to": "g",
+      "min": 2,
+      "max": 99,
+      "step": 1,
+      "multiplyBy": 1000
+    },
+    "13": {
+      "from": "g",
+      "to": "kg",
+      "min": 2000,
+      "max": 99000,
+      "step": 1000,
+      "multiplyBy": 0.001
+    },
+    "14": {
+      "from": "g",
+      "to": "mg",
+      "min": 2,
+      "max": 99,
+      "step": 1,
+      "multiplyBy": 1000
+    },
+    "15": {
+      "from": "mg",
+      "to": "g",
+      "min": 2000,
+      "max": 99000,
+      "step": 1000,
+      "multiplyBy": 0.001
+    },
+    "16": {
+      "from": "t",
+      "to": "kg",
+      "min": 2,
+      "max": 99,
+      "step": 1,
+      "multiplyBy": 1000
+    },
+    "17": {
+      "from": "kg",
+      "to": "t",
+      "min": 1100,
+      "max": 99900,
+      "step": 100,
+      "multiplyBy": 0.001
+    },
+    "18": {
+      "from": "kg",
+      "to": "t",
+      "min": 1010,
+      "max": 99990,
+      "step": 10,
+      "multiplyBy": 0.001
+    },
+    "19": {
+      "from": "g",
+      "to": "mg",
+      "min": 1.1,
+      "max": 99.9,
+      "step": 0.1,
+      "multiplyBy": 1000
+    },
+    "20": {
+      "from": "g",
+      "to": "mg",
+      "min": 1.05,
+      "max": 99.95,
+      "step": 0.05,
+      "multiplyBy": 1000
+    },
+    "21": {
+      "from": "mg",
+      "to": "kg",
+      "min": 10100,
+      "max": 99900,
+      "step": 100,
+      "multiplyBy": 0.000001
+    },
+    "22": {
+      "from": "kg",
+      "to": "mg",
+      "min": 0.01,
+      "max": 9.99,
+      "step": 0.01,
+      "multiplyBy": 1000000
+    },
+    "23": {
+      "from": "t",
+      "to": "g",
+      "min": 1.1,
+      "max": 99.9,
+      "step": 0.1,
+      "multiplyBy": 1000000
+    }
+  },
+  "volume": {
+    "24": {
+      "from": "l",
+      "to": "cm³",
+      "min": 1,
+      "max": 99,
+      "step": 1,
+      "multiplyBy": 1000
+    },
+    "25": {
+      "from": "cm³",
+      "to": "l",
+      "min": 2000,
+      "max": 99000,
+      "step": 1000,
+      "multiplyBy": 0.001
+    },
+    "26": {
+      "from": "cm³",
+      "to": "ml",
+      "min": 1,
+      "max": 99,
+      "step": 1,
+      "multiplyBy": 1
+    },
+    "27": {
+      "from": "ml",
+      "to": "l",
+      "min": 2000,
+      "max": 999000,
+      "step": 1000,
+      "multiplyBy": 0.001
+    },
+    "28": {
+      "from": "m³",
+      "to": "l",
+      "min": 1.1,
+      "max": 99.9,
+      "step": 0.1,
+      "multiplyBy": 1000
+    },
+    "29": {
+      "from": "l",
+      "to": "m³",
+      "min": 1100,
+      "max": 99900,
+      "step": 100,
+      "multiplyBy": 0.001
+    },
+    "30": {
+      "from": "l",
+      "to": "m³",
+      "min": 1010,
+      "max": 99990,
+      "step": 10,
+      "multiplyBy": 0.001
+    },
+    "31": {
+      "from": "cm³",
+      "to": "ml",
+      "min": 2,
+      "max": 9999,
+      "step": 1,
+      "multiplyBy": 1
+    },
+    "32": {
+      "from": "l",
+      "to": "ml",
+      "min": 1.05,
+      "max": 999.95,
+      "step": 0.05,
+      "multiplyBy": 1000
+    },
+    "33": {
+      "from": "l",
+      "to": "ml",
+      "min": 1100,
+      "max": 99900,
+      "step": 100,
+      "multiplyBy": 0.001
+    },
+    "34": {
+      "from": "m³",
+      "to": "cm³",
+      "min": 0.01,
+      "max": 9.999,
+      "step": 0.001,
+      "multiplyBy": 1000000
+    },
+    "35": {
+      "from": "cm³",
+      "to": "m³",
+      "min": 10100,
+      "max": 99900,
+      "step": 100,
+      "multiplyBy": 0.000001
+    }
+  },
+  "time": {
+    "36": {
+      "from": "min",
+      "to": "s",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "multiplyBy": 60
+    },
+    "37": {
+      "from": "days",
+      "to": "hr",
+      "min": 2,
+      "max": 14,
+      "step": 1,
+      "multiplyBy": 24
+    },
+    "38": {
+      "from": "hr",
+      "to": "min",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "multiplyBy": 60
+    },
+    "39": {
+      "from": "s",
+      "to": "min",
+      "min": 120,
+      "max": 960,
+      "step": 60,
+      "multiplyBy": null,
+      "divideBy": 60
+    },
+    "40": {
+      "from": "min",
+      "to": "hr",
+      "min": 120,
+      "max": 9600,
+      "step": 60,
+      "multiplyBy": null,
+      "divideBy": 60
+    },
+    "41": {
+      "from": "hr",
+      "to": "days",
+      "min": 48,
+      "max": 744,
+      "step": 24,
+      "multiplyBy": null,
+      "divideBy": 24
+    },
+    "42": {
+      "from": "hr",
+      "to": "s",
+      "min": 2,
+      "max": 75,
+      "step": 1,
+      "multiplyBy": 3600
+    },
+    "43": {
+      "from": "days",
+      "to": "min",
+      "min": 2,
+      "max": 75,
+      "step": 1,
+      "multiplyBy": 1440
+    },
+    "44": {
+      "from": "s",
+      "to": "hr",
+      "min": 7200,
+      "max": 302400,
+      "step": 3600,
+      "multiplyBy": null,
+      "divideBy": 3600
+    },
+    "45": {
+      "from": "days",
+      "to": "s",
+      "min": 1.5,
+      "max": 9.5,
+      "step": 0.5,
+      "multiplyBy": 86400
+    },
+    "46": {
+      "from": "s",
+      "to": "hr",
+      "min": 7200,
+      "max": 432000,
+      "step": 3600,
+      "multiplyBy": null,
+      "divideBy": 3600
+    },
+    "47": {
+      "from": "day",
+      "to": "min",
+      "min": 1.25,
+      "max": 55,
+      "step": 0.25,
+      "multiplyBy": 1440
+    }
+  }
+}

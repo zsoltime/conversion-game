@@ -1,12 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router } from '@reach/router';
 
+import Header from './Header';
+import Home from './Home';
 import * as serviceWorker from './serviceWorker';
 import './tailwind.generated.css';
 
+const Root = ({ children }) => (
+  <>
+    <Header />
+    {children}
+    <footer className="bg-purple-100 text-gray-800 p-6">
+      <p className="text-center text-xs">&copy;2020 Made by Zsolt Meszaros</p>
+    </footer>
+  </>
+);
 ReactDOM.render(
   <React.StrictMode>
-    <h1>Convertex</h1>
+    <Router>
+      <Root path="/">
+        <Home path="/" />
+      </Root>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root'),
 );

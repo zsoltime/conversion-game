@@ -4,6 +4,7 @@ import { Router } from '@reach/router';
 
 import Header from './Header';
 import Home from './Home';
+import NotFound from './NotFound';
 import * as serviceWorker from './serviceWorker';
 import './tailwind.generated.css';
 
@@ -21,6 +22,7 @@ ReactDOM.render(
     <Router>
       <Root path="/">
         <Home path="/" />
+        <NotFound default />
       </Root>
     </Router>
   </React.StrictMode>,

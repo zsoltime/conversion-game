@@ -5,6 +5,7 @@ import { Router } from '@reach/router';
 import Header from './Header';
 import Home from './Home';
 import NotFound from './NotFound';
+import Single from './Single';
 import * as serviceWorker from './serviceWorker';
 import './tailwind.generated.css';
 
@@ -12,16 +13,20 @@ const Root = ({ children }) => (
   <>
     <Header />
     {children}
-    <footer className="bg-purple-100 text-gray-800 p-6">
+    <footer className="bg-gray-100 text-gray-800 p-6">
       <p className="text-center text-xs">&copy;2020 Made by Zsolt Meszaros</p>
     </footer>
   </>
 );
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Root path="/">
         <Home path="/" />
+        {['length', 'mass', 'volume', 'time'].map(path => (
+          <Single key={path} path={`/${path}`} />
+        ))}
         <NotFound default />
       </Root>
     </Router>

@@ -76,14 +76,37 @@ function Message({ children, type = 'info' }) {
   );
 }
 
-function QuestionCard({ answer, error, from, id, number, onChange, step, to }) {
+function QuestionCard({
+  answer,
+  isChecked,
+  isCorrect,
+  from,
+  id,
+  number,
+  onChange,
+  step,
+  to,
+}) {
   let inputClass =
-    'w-full py-2 px-3 border rounded leading-tight focus:shadow-outline ' +
-    (error ? 'border-red-500 text-red-700 ' : 'border-gray-400 text-gray-800');
+    'w-full py-2 px-3 border rounded leading-tight focus:shadow-outline transition-colors ease-in-out duration-200 ';
 
   let wrapperClass =
-    'w-full px-4 py-8 rounded shadow-lg text-center text-gray-700 ' +
-    (error ? 'bg-red-100' : 'bg-white');
+    'w-full px-4 py-8 rounded shadow-lg text-center text-gray-700 transition-colors ease-in-out duration-200 ';
+
+  if (!isChecked) {
+    inputClass += 'border-gray-400 text-gray-800';
+    wrapperClass += 'bg-white';
+  }
+
+  if (isChecked && !isCorrect) {
+    inputClass += 'border-red-500 text-red-700';
+    wrapperClass += 'bg-red-100';
+  }
+
+  if (isChecked && isCorrect) {
+    inputClass += 'border-green-500 text-green-700';
+    wrapperClass += 'bg-green-100';
+  }
 
   return (
     <div className={wrapperClass}>
@@ -92,7 +115,7 @@ function QuestionCard({ answer, error, from, id, number, onChange, step, to }) {
       </label>
       <input
         aria-describedby={`error-${id}`}
-        aria-invalid={error.toString()}
+        aria-invalid={isChecked && !isCorrect ? 'true' : 'false'}
         className={inputClass}
         type="number"
         id={id}
@@ -107,7 +130,7 @@ function QuestionCard({ answer, error, from, id, number, onChange, step, to }) {
         className="text-red-700 text-sm mt-2"
         id={`error-${id}`}
       >
-        {error && <span>Incorrect answer</span>}
+        {isChecked && !isCorrect && <span>Incorrect answer</span>}
       </div>
     </div>
   );
@@ -149,7 +172,8 @@ function Single(props) {
             [key]: {
               ...item,
               answer: null,
-              error: false,
+              isChecked: false,
+              isCorrect: null,
               number,
               solution,
             },
@@ -165,28 +189,6 @@ function Single(props) {
       });
   }, [path]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    let questionsWithErrors = {};
-
-    Object.keys(questions).forEach(key => {
-      let item = questions[key];
-      let { answer, solution } = item;
-      let isAnswerCorrect = isEqual(answer, solution, 0.0000001);
-
-      questionsWithErrors = {
-        ...questionsWithErrors,
-        [key]: {
-          ...item,
-          error: !isAnswerCorrect,
-        },
-      };
-    });
-
-    setQuestions(questionsWithErrors);
-  }
-
   function handleChange(e) {
     let { id, value } = e.target;
     let answer = parseFloat(value);
@@ -196,8 +198,33 @@ function Single(props) {
       [id]: {
         ...questions[id],
         answer,
+        isChecked: false,
+        isCorrect: null,
       },
     });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    let questionsWithResults = {};
+
+    Object.keys(questions).forEach(key => {
+      let item = questions[key];
+      let { answer, solution } = item;
+      let isAnswerCorrect = isEqual(answer, solution, 0.0000001);
+
+      questionsWithResults = {
+        ...questionsWithResults,
+        [key]: {
+          ...item,
+          isChecked: true,
+          isCorrect: isAnswerCorrect,
+        },
+      };
+    });
+
+    setQuestions(questionsWithResults);
   }
 
   return (
@@ -223,14 +250,21 @@ function Single(props) {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:col-gap-16">
               {questions &&
                 Object.keys(questions).map(key => {
-                  let { answer, error, from, number, solution, to } = questions[
-                    key
-                  ];
+                  let {
+                    answer,
+                    isChecked,
+                    isCorrect,
+                    from,
+                    number,
+                    solution,
+                    to,
+                  } = questions[key];
 
                   return (
                     <QuestionCard
                       key={key}
-                      error={error}
+                      isChecked={isChecked}
+                      isCorrect={isCorrect}
                       from={from}
                       id={key}
                       number={number}

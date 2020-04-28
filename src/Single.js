@@ -79,7 +79,7 @@ function Dialog({ close, results }) {
         backdropFilter: 'blur(4px)',
       }}
     >
-      <DialogContent className={contentClass}>
+      <DialogContent aria-label="The results are in" className={contentClass}>
         <h1 className={titleClass}>{title}</h1>
         <p className="mb-8">{message}</p>
         <div className="flex justify-around">

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { DialogOverlay, DialogContent } from '@reach/dialog';
 
 // note: max is not included
 function generateNumber({ min = 0, max, step = 1 }) {
@@ -44,6 +45,61 @@ function client(endpoint, { body, ...customConfig } = {}) {
       return Promise.reject(data);
     }
   });
+}
+
+function Dialog({ close, results }) {
+  const buttonRef = useRef();
+  let contentClass =
+    'absolute shadow-lg text-center outline-none w-full max-w-lg max-h-full mx-auto inset-1/2 bottom-auto right-auto transform -translate-x-1/2 -translate-y-1/2 px-4 sm:px-8 py-8 ';
+  let titleClass = 'text-xl font-bold mb-8 ';
+  let title;
+  let message;
+
+  if (results.correct / 12 < 0.75) {
+    title = `That's only ${results.correct} out of 12`;
+    message = `Would you like to try again and correct the remaining ${results.incorrect} answers?`;
+    contentClass += 'bg-red-200';
+    titleClass += 'text-red-700';
+  } else {
+    title = `Amazing! That's ${results.correct} out of 12`;
+    message =
+      results.incorrect === 0
+        ? 'Congratulations, it seems you can convert like a pro'
+        : `Would you like to try again and correct your remaining ${results.incorrect} answers?`;
+    contentClass += 'bg-green-200';
+    titleClass += 'text-green-700';
+  }
+
+  return (
+    <DialogOverlay
+      className="fixed inset-0 bg-whiteTransparent"
+      initialFocusRef={buttonRef}
+      onDismiss={close}
+      style={{
+        backdropFilter: 'blur(4px)',
+      }}
+    >
+      <DialogContent className={contentClass}>
+        <h1 className={titleClass}>{title}</h1>
+        <p className="mb-8">{message}</p>
+        <div className="flex justify-around">
+          <button
+            className="bg-transparent hover:bg-red-500 text-red-800 hover:text-white font-semibold border border-red-800 hover:border-transparent rounded leading-tight py-2 px-4"
+            onClick={close}
+          >
+            No thanks, I gave up
+          </button>
+          <button
+            className="bg-teal-500 hover:bg-teal-700 text-white rounded leading-tight py-2 px-4"
+            onClick={close}
+            ref={buttonRef}
+          >
+            Try again
+          </button>
+        </div>
+      </DialogContent>
+    </DialogOverlay>
+  );
 }
 
 function Message({ children, type = 'info' }) {
@@ -140,7 +196,13 @@ function Single(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(null);
   const [questions, setQuestions] = useState(null);
+  const [results, setResults] = useState({ correct: 0, incorrect: 0 });
+  const [showDialog, setShowDialog] = useState(false);
+
   const path = props.path.replace(/^\//, '');
+
+  const openDialog = () => setShowDialog(true);
+  const closeDialog = () => setShowDialog(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -208,11 +270,18 @@ function Single(props) {
     e.preventDefault();
 
     let questionsWithResults = {};
+    let newResults = { correct: 0, incorrect: 0 };
 
     Object.keys(questions).forEach(key => {
       let item = questions[key];
       let { answer, solution } = item;
       let isAnswerCorrect = isEqual(answer, solution, 0.0000001);
+
+      if (isAnswerCorrect) {
+        newResults.correct += 1;
+      } else {
+        newResults.incorrect += 1;
+      }
 
       questionsWithResults = {
         ...questionsWithResults,
@@ -224,7 +293,9 @@ function Single(props) {
       };
     });
 
+    openDialog();
     setQuestions(questionsWithResults);
+    setResults(newResults);
   }
 
   return (
@@ -278,7 +349,6 @@ function Single(props) {
                   );
                 })}
             </div>
-
             <div className="flex items-center justify-center">
               <button
                 className="bg-purple-700 hover:bg-purple-600 text-white text-xl py-2 px-16 my-8 rounded focus:outline-none focus:shadow-outline transition-colors ease-in-out duration-200"
@@ -290,6 +360,7 @@ function Single(props) {
           </form>
         )}
       </div>
+      {showDialog && <Dialog close={closeDialog} results={results} />}
     </main>
   );
 }

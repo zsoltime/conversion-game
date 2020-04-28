@@ -14,7 +14,9 @@ module.exports = {
       current: 'currentColor',
 
       black: '#000',
+      blackTransparent: 'rgba(0, 0, 0, 0.5)',
       white: '#fff',
+      whiteTransparent: 'rgba(255, 255, 255, 0.5)',
 
       gray: {
         100: '#f7fafc',
@@ -296,6 +298,7 @@ module.exports = {
     inset: {
       '0': '0',
       auto: 'auto',
+      '1/2': '50%',
     },
     letterSpacing: {
       tighter: '-0.05em',
